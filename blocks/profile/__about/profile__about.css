@@ -1,0 +1,9 @@
+.profile__about {
+  margin-right: 18px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .profile__about {
+    margin-right: 10px;
+  }
+}

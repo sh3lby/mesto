@@ -1,0 +1,32 @@
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 37px 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .profile__edit-button {
+    margin: 30.25px 0 0 0;
+  }
+}

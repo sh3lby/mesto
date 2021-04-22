@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="description" content="Яндекс.Практикум, проектная работа 4">
+    <meta name="keywords" content="HTML5, CSS, fonts, import, media, adaptive, JS">
+    <meta name="author" content="Владимир Давыдов">
+</head>
+<body class="page">
+  <section class="popup">
+    <div class="popup__container">
+      <form class="popup__form">
+        <p class="popup__name">Редактировать профиль</p>
+        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
+        <input type="text" placeholder="О себе" class="popup__input popup__input_type_job">
+        <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </section>
+  <header class="header">
+    <img src="./images/header-logo.svg" alt="логотип Место" class="header__logo">
+  </header>
+  <main class="main">
+    <section class="profile" aria-label="профиль">
+      <div class="profile__user">
+      <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar">
+      <div class="profile__info">
+        <div class="profile__about">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h2 class="profile__job">Исследователь океана</h2>
+        </div>
+        <button class="profile__edit-button" type="button">
+          <img src="./images/edit-button.svg" alt="редактировать">
+        </button>
+      </div>
+      </div>
+      <button class="profile__add-button" type="button">
+        <img src="./images/add-button.svg" alt="добавить">
+      </button>
+    </section>
+    <section class="elements" aria-label="карточки">
+      <div class="element">
+        <img src="./images/Karachaevsk.png" alt="Карачаевск" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Карачаевск</h3>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img src="./images/Mountain-Elbrus.png" alt="Гора Эльбрус" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Гора Эльбрус</h3>
+          <button class="element__like-button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img src="./images/Dombay.png" alt="Домбай" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Домбай</h3>
+          <button class="element__like-button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img src="./images/Mountain-Elbrus.png" alt="Гора Эльбру" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Гора Эльбрус</h3>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img src="./images/Dombay.png" alt="Домбай" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Домбай</h3>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img src="./images/Karachaevsk.png" alt="Карачаево" class="element__image">
+        <div class="element__decription">
+          <h3 class="element__title">Карачаево-Черкесия</h3>
+          <button class="element__like-button" type="button"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2021. Владимир Давыдов</p>
+  </footer>
+  <script src="/scripts/index.js"></script>
+</body>
+</html>
