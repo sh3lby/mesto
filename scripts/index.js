@@ -8,10 +8,14 @@ let nameChange = document.querySelector('.profile__name');
 let jobChange = document.querySelector('.profile__job');
 
 
-function Popup() {
+function openPopup() {
   popup.classList.toggle('popup_opened')
   nameInput.value = nameChange.textContent;
   jobInput.value = jobChange.textContent;
+};
+
+function closePopup() {
+  popup.classList.toggle('popup_opened')
 };
 
 
@@ -19,9 +23,9 @@ function formSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   nameChange.textContent = nameInput.value;
   jobChange.textContent = jobInput.value;
-  Popup();
+  closePopup();
 };
 
-popupOpenButton.addEventListener('click', Popup);
-popupCloseButton.addEventListener('click', Popup);
+popupOpenButton.addEventListener('click', openPopup);
+popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmit);
