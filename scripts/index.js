@@ -74,7 +74,7 @@ function handleClosePopup(popup) {
 };
 
 
-function addElement (title, src) {
+function createElement (title, src) {
   const newElement = elementTemplate.content.querySelector('.element').cloneNode(true);
   const titleElement = newElement.querySelector('.element__title');
   const imageElement = newElement.querySelector('.element__image');
@@ -92,15 +92,20 @@ function addElement (title, src) {
   });
 
   imageElement.addEventListener('click', () => {
-    handleOpenView(imageElement.src, titleElement.textContent);
+    handleOpenView(src, title);
   })
 
-  return gallery.prepend(newElement);
+  return newElement;
+}
+
+
+function addNewElement (container, cardElement) {
+  container.prepend(cardElement);
 }
 
 
 initialCards.forEach((element) => {
-  addElement(element.name, element.link);
+  addNewElement (gallery, createElement(element.name, element.link) );
 });
 
 
@@ -126,7 +131,7 @@ popupUserClose.addEventListener('click', () => {
 
 function handleSubmitElement(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  addElement(nameElement.value, srcElement.value);
+  addNewElement(gallery, createElement(nameElement.value, srcElement.value) );
   handleClosePopup(popupElement);
 };
 
@@ -144,6 +149,7 @@ popupElementClose.addEventListener('click', () => {
 
 function handleOpenView(image, text) {
   popupImage.src = image;
+  popupImage.alt = text;
   popupDescription.textContent = text;
   handleOpenPopup(popupView);
 }
