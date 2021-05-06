@@ -17,7 +17,7 @@ const popupElementOpen = document.querySelector('.profile__add-button');
 const popupElementClose = document.querySelector('#btn-close-add-popup');
 const formElement = document.querySelector('#form-element');
 const btnSubmitElement = document.querySelector('#btn-submit-add-popup');
-const nameElement = document.querySelector('.popup__input_type_name_place');
+const nameElement = document.querySelector('.popup__input_type_name-place');
 const srcElement = document.querySelector('.popup__input_type_src-link');
 
 
