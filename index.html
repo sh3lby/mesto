@@ -11,15 +11,35 @@
     <meta name="author" content="Владимир Давыдов">
 </head>
 <body class="page">
-  <section class="popup" aria-label="окно редактирования">
+  <section id="popup-user" class="popup popup_type_about-user" aria-label="окно редактирования">
     <div class="popup__container">
-      <form class="popup__form" name="form-about-user">
+      <form id="form-user" class="popup__form" name="form-about-user">
         <p class="popup__name">Редактировать профиль</p>
-        <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name">
-        <input type="text" placeholder="О себе" name="job" class="popup__input popup__input_type_job">
-        <button class="popup__submit-button" type="submit">Сохранить</button>
+        <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name" required>
+        <input type="text" placeholder="О себе" name="job" class="popup__input popup__input_type_job" required>
+        <button id="btn-submit-about-popup" class="popup__submit-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close-button" type="button"></button>
+      <button id="btn-close-about-popup" class="popup__close-button" type="button"></button>
+    </div>
+  </section>
+  <section id="popup-element" class="popup popup_type_add-element" aria-label="окно добавления">
+    <div class="popup__container">
+      <form id="form-element" class="popup__form" name="form-add-item">
+        <p class="popup__name">Новое место</p>
+        <input type="text" placeholder="Название" name="name_place" class="popup__input popup__input_type_name_place" required>
+        <input type="text" placeholder="Ссылка на картинку" name="src_link" class="popup__input popup__input_type_src-link" required>
+        <button id="btn-submit-add-popup" class="popup__submit-button" type="submit">Создать</button>
+      </form>
+      <button id="btn-close-add-popup" class="popup__close-button" type="button"></button>
+    </div>
+  </section>
+  <section id="popup-view" class="popup popup_type_view-image" aria-label="просмотр карточки">
+    <div class="popup__view-image">
+      <button id="btn-close-figure-popup" class="popup__close-button" type="button"></button>
+      <figure class="popup__figure">
+        <img src="#" alt="#" class="popup__image">
+        <figcaption class="popup__figcaption"></figcaption>
+      </figure>
     </div>
   </section>
   <header class="header">
@@ -31,8 +51,8 @@
       <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__about">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__job">Исследователь океана</p>
+          <h1 class="profile__name">sh3lby.cc</h1>
+          <p class="profile__job">Генин веб-разработки</p>
         </div>
         <button class="profile__edit-button" type="button">
           <img src="./images/edit-button.svg" alt="редактировать">
@@ -44,53 +64,21 @@
       </button>
     </section>
     <section class="elements" aria-label="карточки">
-      <div class="element">
-        <img src="./images/Karachaevsk.png" alt="Карачаевск" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Карачаевск</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Mountain-Elbrus.png" alt="Гора Эльбрус" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Гора Эльбрус</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Dombay.png" alt="Домбай" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Mountain-Elbrus.png" alt="Гора Эльбру" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Гора Эльбрус</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Dombay.png" alt="Домбай" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Karachaevsk.png" alt="Карачаево" class="element__image">
-        <div class="element__decription">
-          <h3 class="element__title">Карачаево-Черкесия</h3>
-          <button class="element__like-button" type="button"></button>
-        </div>
-      </div>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021. Владимир Давыдов</p>
   </footer>
+  <template id="add-element">
+    <div class="element">
+      <img src="#" alt="#" class="element__image">
+      <button class="element__trash-button" type="button"></button>
+      <div class="element__decription">
+        <h3 class="element__title"></h3>
+        <button class="element__like-button" type="button"></button>
+      </div>
+    </div>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
