@@ -1,0 +1,22 @@
+.form__input-error {
+  display: block;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  margin: 5px 0 13px;
+  min-height: 12px;
+}
+
+.form__input-error:last-of-type {
+  margin: 5px 0 31px;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form__input-error:last-of-type {
+    margin: 5px 0 28px;
+  }
+}
+

@@ -23,6 +23,15 @@
   opacity: 0.8;
 }
 
+.popup__submit-button:disabled {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  cursor: default;
+  opacity: .2;
+  transition: none;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
   .popup__submit-button {
     max-width: 238px;

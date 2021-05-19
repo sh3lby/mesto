@@ -30,11 +30,22 @@ const popupDescription = document.querySelector('.popup__figcaption');
 
 //
 
+const overlayPopup = Array.from(document.querySelectorAll('.popup'));
+
 
 const elementTemplate = document.querySelector('#add-element');
 
 
 const gallery = document.querySelector('.elements');
+
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
 
 
 const initialCards = [
@@ -66,11 +77,13 @@ const initialCards = [
 
 
 function handleOpenPopup(popup) {
-  popup.classList.toggle('popup_opened');
+  popup.classList.add('popup_opened');
+  document.addEventListener('keyup', closePopupKeyDown);
 };
 
 function handleClosePopup(popup) {
-  popup.classList.toggle('popup_opened');
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', closePopupKeyDown);
 };
 
 
@@ -140,6 +153,7 @@ formElement.addEventListener('submit', handleSubmitElement);
 popupElementOpen.addEventListener('click', () => {
   handleOpenPopup(popupElement)
   formElement.reset();
+  btnSubmitElement.disabled = true;
 });
 
 popupElementClose.addEventListener('click', () => {
@@ -157,3 +171,22 @@ function handleOpenView(image, text) {
 popupViewClose.addEventListener('click', () => {
   handleClosePopup(popupView)
 });
+
+
+overlayPopup.forEach(popup => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      handleClosePopup(popup);
+    }
+  });
+})
+
+
+function closePopupKeyDown(evt) {
+  if (evt.key === 'Escape') {
+    const whichOpenedPopup = document.querySelector('.popup_opened');
+    handleClosePopup(whichOpenedPopup);
+  }
+}
+
+enableValidation(config);
