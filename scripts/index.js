@@ -44,7 +44,7 @@ const config = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
+  errorClass: 'popup__input-error_active'
 }
 
 
