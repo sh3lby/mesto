@@ -78,7 +78,7 @@ const enableValidation = ({ formSelector, ...restConfig }) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
   // добавить слушатели на все формы
-  formList.forEach((formSelector) => {
-    setEventListeners(formSelector, restConfig);
+  formList.forEach((formElement) => {
+    setEventListeners(formElement, restConfig);
   })
 };
