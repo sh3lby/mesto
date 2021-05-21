@@ -1,37 +1,37 @@
-const hideInputError = (formSelector, inputSelector, config) => {
+const hideInputError = (formElement, inputElement, config) => {
   // скрыть текст ошибки
   // найти элемент с текстом ошибки
   const { inputErrorClass, errorClass } = config;
-  const errorElement = formSelector.querySelector(`#${inputSelector.id}-error`);
-  inputSelector.classList.remove(inputErrorClass);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
 }
 
 
-const showInputError = (formSelector, inputSelector, config) => {
+const showInputError = (formElement, inputElement, config) => {
   // показать текст ошибки
   const { inputErrorClass, errorClass } = config;
-  const errorElement = formSelector.querySelector(`#${inputSelector.id}-error`);
-  inputSelector.classList.add(inputErrorClass);
-  errorElement.textContent = inputSelector.validationMessage;
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.add(inputErrorClass);
+  errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(errorClass);
 }
 
 
-const checkInputValidity = (formSelector, inputSelector, config) => {
+const checkInputValidity = (formElement, inputElement, config) => {
   // проверка инпута на валидность
-  if (inputSelector.validity.valid) {
-    hideInputError(formSelector, inputSelector, config);
+  if (inputElement.validity.valid) {
+    hideInputError(formElement, inputElement, config);
   } else {
-    showInputError(formSelector, inputSelector, config);
+    showInputError(formElement, inputElement, config);
   }
   // если валидно, то скрыть текст с ошибкой, в противном случае — показать
 }
 
 
 const hazInvalidInput = (inputList) => {
-  return inputList.some(inputSelector => !inputSelector.validity.valid);
+  return inputList.some(inputElement => !inputElement.validity.valid);
 }
 
 
@@ -45,25 +45,25 @@ const toggleButtonState = (buttonElement, inputList) => {
 }
 
 
-const setEventListeners = (formSelector, config) => {
+const setEventListeners = (formElement, config) => {
   // отмена стандартной отправки формы
   const { inputSelector, submitButtonSelector, ...restConfig } = config;
 
-  formSelector.addEventListener('submit', (evt) => {
+  formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
   });
 
   // найти все инпуты
-  const inputList = Array.from(formSelector.querySelectorAll(inputSelector));
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
 
   // найти кнопку отправки формы
-  const buttonElement = formSelector.querySelector(submitButtonSelector);
+  const buttonElement = formElement.querySelector(submitButtonSelector);
 
   // добавить слушатели на все инпуты
-  inputList.forEach((inputSelector) => {
-    inputSelector.addEventListener('input', () => {
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
       // проверка на валидность
-      checkInputValidity(formSelector, inputSelector, restConfig);
+      checkInputValidity(formElement, inputElement, restConfig);
       toggleButtonState(buttonElement, inputList);
     });
   })
