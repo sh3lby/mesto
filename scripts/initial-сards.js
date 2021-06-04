@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Tokyo',
     link: 'https://images.unsplash.com/photo-1584047959799-e457aef6f80f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'
@@ -24,11 +24,3 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1567085295755-3e2eb98e9db8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'
   }
 ];
-
-function addInitialCards (container, cardElement) {
-  container.append(cardElement);
-}
-
-initialCards.forEach((element) => {
-  addInitialCards (gallery, createElement(element.name, element.link));
-});

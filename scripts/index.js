@@ -1,3 +1,17 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards } from './initial-сards.js';
+
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'popup__input-error_active'
+}
+
+
 // Popup User
 
 const popupUser = document.querySelector('#popup-user');
@@ -31,19 +45,19 @@ const popupDescription = document.querySelector('.popup__figcaption');
 //
 
 
-const overlayPopup = Array.from(document.querySelectorAll('.popup'));
-
-const elementTemplate = document.querySelector('#add-element');
+const overlayPopup = document.querySelectorAll('.popup');
 
 const gallery = document.querySelector('.elements');
 
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'popup__input-error_active'
-}
+
+const validateProfile = new FormValidator(config, formUser);
+const validateCards = new FormValidator(config, formElement);
+
+
+validateProfile.enableValidation();
+validateCards.enableValidation();
+validateProfile.toggleButtonState();
+validateCards.toggleButtonState();
 
 
 function handleOpenPopup(popup) {
@@ -57,35 +71,9 @@ function handleClosePopup(popup) {
   document.removeEventListener('keyup', closePopupKeyDown);
 };
 
-// Пока плохо даются объекты, помечу для себя исправить функцию (1 аргумент — объект cardData)
 
-function createElement (title, src) {
-  const newElement = elementTemplate.content.querySelector('.element').cloneNode(true);
-  const titleElement = newElement.querySelector('.element__title');
-  const imageElement = newElement.querySelector('.element__image');
-
-  titleElement.textContent = title;
-  imageElement.alt = title;
-  imageElement.src = src;
-
-  newElement.querySelector('.element__like-button').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__like-button_active')
-  });
-
-  newElement.querySelector('.element__trash-button').addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-
-  imageElement.addEventListener('click', () => {
-    handleOpenView(src, title);
-  })
-
-  return newElement;
-}
-
-
-function addNewElement (container, cardElement) {
-  container.prepend(cardElement);
+function addNewElement (cardElement) {
+  gallery.prepend(cardElement);
 }
 
 
@@ -97,18 +85,26 @@ function handleSubmitUser(evt) {
 };
 
 
-function handleSubmitElement(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  addNewElement(gallery, createElement(nameElement.value, srcElement.value) );
-  handleClosePopup(popupElement);
-};
-
-
 function handleOpenView(image, text) {
   popupImage.src = image;
   popupImage.alt = text;
   popupDescription.textContent = text;
   handleOpenPopup(popupView);
+}
+
+
+function handleSubmitElement(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  const cardData = {
+    name: nameElement.value,
+    link: srcElement.value
+  }
+  const newCard = new Card(cardData, handleOpenView);
+  const cardElement = newCard.generateCard();
+  addNewElement(cardElement);
+  handleClosePopup(popupElement);
+  validateProfile.toggleButtonState();
+  validateCards.toggleButtonState();
 }
 
 
@@ -126,7 +122,6 @@ popupElementOpen.addEventListener('click', () => {
   handleOpenPopup(popupElement)
   formElement.reset();
   btnSubmitElement.disabled = true;
-  //Разобраться и сделать функцию resetValidation в validate.js
 });
 
 popupElementClose.addEventListener('click', () => {
@@ -160,5 +155,8 @@ popupUserClose.addEventListener('click', () => {
   handleClosePopup(popupUser)
 });
 
-
-enableValidation(config);
+initialCards.forEach((initialCards) => {
+  const card = new Card(initialCards, handleOpenView);
+  const cardElement = card.generateCard();
+  gallery.append(cardElement);
+});
