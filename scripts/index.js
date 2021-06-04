@@ -54,11 +54,6 @@ const validateProfile = new FormValidator(config, formUser);
 const validateCards = new FormValidator(config, formElement);
 
 
-validateProfile.enableValidation();
-validateCards.enableValidation();
-validateProfile.toggleButtonState();
-validateCards.toggleButtonState();
-
 
 function handleOpenPopup(popup) {
   popup.classList.add('popup_opened');
@@ -160,3 +155,8 @@ initialCards.forEach((initialCards) => {
   const cardElement = card.generateCard();
   gallery.append(cardElement);
 });
+
+validateProfile.enableValidation();
+validateCards.enableValidation();
+validateProfile.toggleButtonState();
+validateCards.toggleButtonState();
