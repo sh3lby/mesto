@@ -67,6 +67,11 @@ function handleClosePopup(popup) {
 };
 
 
+function createCard(item) {
+  const newCard = new Card(item, handleOpenView);
+  return newCard.generateCard();
+}
+
 function addNewElement (cardElement) {
   gallery.prepend(cardElement);
 }
@@ -94,9 +99,8 @@ function handleSubmitElement(evt) {
     name: nameElement.value,
     link: srcElement.value
   }
-  const newCard = new Card(cardData, handleOpenView);
-  const cardElement = newCard.generateCard();
-  addNewElement(cardElement);
+  const cards = createCard(cardData);
+  addNewElement(cards);
   handleClosePopup(popupElement);
   validateProfile.toggleButtonState();
   validateCards.toggleButtonState();
@@ -116,7 +120,7 @@ formElement.addEventListener('submit', handleSubmitElement);
 popupElementOpen.addEventListener('click', () => {
   handleOpenPopup(popupElement)
   formElement.reset();
-  btnSubmitElement.disabled = true;
+  validateCards.enableValidation();
 });
 
 popupElementClose.addEventListener('click', () => {
@@ -151,9 +155,8 @@ popupUserClose.addEventListener('click', () => {
 });
 
 initialCards.forEach((initialCards) => {
-  const card = new Card(initialCards, handleOpenView);
-  const cardElement = card.generateCard();
-  gallery.append(cardElement);
+  const cards = createCard(initialCards);
+  gallery.append(cards);
 });
 
 validateProfile.enableValidation();

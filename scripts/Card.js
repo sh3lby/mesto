@@ -1,15 +1,10 @@
 export class Card {
-  #element;
-  #name;
-  #link;
-  #handleCardClick;
-
-  constructor({name, link}, handleCardClick) {
-      this.#name = name;
-      this.#link = link;
-      this.#handleCardClick = handleCardClick;
+ constructor({name, link}, handleCardClick) {
+      this._name = name;
+      this._link = link;
+      this._handleCardClick = handleCardClick;
   }
-  #getTemplate = () => {
+  _getTemplate = () => {
     const cardElement = document
       .querySelector('#add-element')
       .content
@@ -20,36 +15,36 @@ export class Card {
   }
 
   generateCard = () => {
-    this.#element = this.#getTemplate();
-    this.#setEventListeners();
-    this.#element.querySelector('.element__title').textContent = this.#name;
-    this.#element.querySelector('.element__image').src = this.#link;
-    this.#element.querySelector('.element__image').alt = this.#name;
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__image').src = this._link;
+    this._element.querySelector('.element__image').alt = this._name;
 
-    return this.#element;
+    return this._element;
   }
 
-  #setEventListeners = () => {
-    this.#element.querySelector('.element__like-button').addEventListener('click', (evt) => {
-      this.#likeElement(evt);
+  _setEventListeners = () => {
+    this._element.querySelector('.element__like-button').addEventListener('click', (evt) => {
+      this._likeElement(evt);
     });
 
-    this.#element.querySelector('.element__trash-button').addEventListener('click', () => {
-      this.#deleteElement();
+    this._element.querySelector('.element__trash-button').addEventListener('click', () => {
+      this._deleteElement();
     });
 
-    this.#element.querySelector('.element__image').addEventListener('click', () => {
-      this.#handleCardClick(this.#link, this.#name);
+    this._element.querySelector('.element__image').addEventListener('click', () => {
+      this._handleCardClick(this._link, this._name);
   });
   }
 
-  #likeElement = (evt) => {
+  _likeElement = (evt) => {
     evt.target.classList.toggle('element__like-button_active')
   }
 
-  #deleteElement = (evt) => {
-    if(this.#element) {
-      this.#element.remove();
+  _deleteElement = (evt) => {
+    if(this._element) {
+      this._element.remove();
     }
   }
 }
