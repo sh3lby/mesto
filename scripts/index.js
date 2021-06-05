@@ -120,7 +120,7 @@ formElement.addEventListener('submit', handleSubmitElement);
 popupElementOpen.addEventListener('click', () => {
   handleOpenPopup(popupElement)
   formElement.reset();
-  validateCards.enableValidation();
+  validateCards.toggleButtonState();
 });
 
 popupElementClose.addEventListener('click', () => {
