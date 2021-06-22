@@ -32,7 +32,6 @@ const formUser = document.querySelector('#form-user');
 
 const popupElementOpen = document.querySelector('.profile__add-button');
 const formElement = document.querySelector('#form-element');
-const btnSubmitElement = document.querySelector('#btn-submit-add-popup');
 
 
 const editProfile = new FormValidator(config, formUser);

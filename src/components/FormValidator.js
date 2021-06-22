@@ -1,5 +1,5 @@
 export class FormValidator {
- constructor (selector, element) {
+  constructor (selector, element) {
     this._selector = selector;
     this._element = element;
   }
