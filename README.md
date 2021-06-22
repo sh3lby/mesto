@@ -1,13 +1,13 @@
-# Проект 4: Mesto
+# Проект 8: Mesto
 
 [https://sh3lby.github.io/mesto/]
 
-## Базовый JavaScript и работа с браузером
+## JavaScript — непростые концепции
 
 <img src=https://media.giphy.com/media/NmBvCW8ZAVWbwsGLfb/giphy.gif>
 
 ## Описание
-Целью проекта является применение и настройка технологий, которые позволяют пользователю взаимодействовать с формой на сайте. Плюс верстка адаптива.
+Рефакторинг и сборка с помощью webpack'a.
 
 ### Примененные технологии
 - flexbox
@@ -17,6 +17,5 @@
 - pseudo-classes
 - media
 - transition
-
-## В планах
-- плотное изучение JS
+- npm
+- webpack

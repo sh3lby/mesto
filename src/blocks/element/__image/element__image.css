@@ -1,0 +1,7 @@
+.element__image {
+  margin-bottom: 25px;
+  width: 282px;
+  height: 282px;
+  object-fit: fill;
+  cursor: pointer;
+}
