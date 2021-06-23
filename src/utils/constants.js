@@ -4,6 +4,7 @@ export const config = {
   submitButtonSelector: '.popup__submit-button',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'popup__input-error_active',
+  messageValidError: 'popup__input-error',
   infoName: '.profile__name',
   infoJob: '.profile__job',
   elements: '.elements'

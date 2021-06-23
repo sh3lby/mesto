@@ -54,6 +54,14 @@ export class FormValidator {
     }
   }
 
+  clearValidation = (validationSpan, classError) => {
+      const errorElement = Array.from(this._element.querySelectorAll(`.${validationSpan}`));
+      errorElement.forEach((input) => {
+        input.classList.remove(`.${classError}`);
+        input.textContent = '';
+      });
+  }
+
   enableValidation = () => {
     this._element.addEventListener('submit', function (evt) {
       evt.preventDefault();

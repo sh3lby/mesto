@@ -49,7 +49,6 @@ function handleSubmitUser(evt, data) {
 function handleSubmitElement(evt, data) {
   addSection.addItem(renderCard(data));
   popupAddCard.closePopup();
-  editProfile.toggleButtonState();
   addCards.toggleButtonState();
 };
 
@@ -62,15 +61,15 @@ popupUserOpen.addEventListener('click', () => {
   jobInput.value = data.job;
   editProfile.toggleButtonState();
   popupEditProfile.openPopup();
+  editProfile.clearValidation(config.messageValidError, config.inputErrorClass);
 });
 
 
 popupElementOpen.addEventListener('click', () => {
-  popupAddCard.openPopup();
-  formElement.reset();
   addCards.toggleButtonState();
+  popupAddCard.openPopup();
+  addCards.clearValidation(config.messageValidError, config.errorClass);
 });
-
 
 
 addSection.renderItems();
