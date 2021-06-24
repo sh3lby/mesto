@@ -61,14 +61,14 @@ popupUserOpen.addEventListener('click', () => {
   jobInput.value = data.job;
   editProfile.toggleButtonState();
   popupEditProfile.openPopup();
-  editProfile.clearValidation(config.messageValidError, config.inputErrorClass);
+  editProfile.clearValidation()
 });
 
 
 popupElementOpen.addEventListener('click', () => {
   addCards.toggleButtonState();
   popupAddCard.openPopup();
-  addCards.clearValidation(config.messageValidError, config.errorClass);
+  addCards.clearValidation()
 });
 
 
