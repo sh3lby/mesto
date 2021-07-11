@@ -1,7 +1,8 @@
 .element__image {
-  margin-bottom: 25px;
+  display: block;
+  margin-bottom: 22px;
   width: 282px;
   height: 282px;
-  object-fit: fill;
+  object-fit: cover;
   cursor: pointer;
 }

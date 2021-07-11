@@ -1,0 +1,6 @@
+.element__like-ui {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  margin-left: auto;
+}

@@ -1,9 +1,24 @@
 export class Card {
-  constructor({name, link}, cardSelector, handleCardClick) {
+  constructor(
+    {name, link, likes = [], _id, owner },
+    cardSelector,
+    handleCardClick,
+    likeCards,
+    dislikeCards,
+    buttonDeleteCard,
+    userId) {
       this._name = name;
       this._link = link;
+      this._likes = likes;
+      this._counter = likes.length;
+      this._owner = owner._id;
+      this._id = _id;
       this._cardSelector = cardSelector;
       this._handleCardClick = handleCardClick;
+      this._likeCards = likeCards;
+      this._dislikeCards = dislikeCards;
+      this._buttonDeleteCard = buttonDeleteCard;
+      this._userId = userId._id;
   }
 
   _getTemplate = () => {
@@ -20,13 +35,28 @@ export class Card {
     this._element = this._getTemplate();
     const image = this._element.querySelector('.element__image');
     const name = this._element.querySelector('.element__title');
+    const counterLikes = this._element.querySelector('.element__like-counter');
+    this._likeBtn = this._element.querySelector('.element__like-button');
+
     this._setEventListeners();
+
+    this._likes.forEach(likes => {
+      if (likes._id === this._userId) {
+        this._likeBtn.classList.add('element__like-button_active')
+      }
+    });
 
     name.textContent = this._name;
     image.src = this._link;
     image.alt = this._name;
+    counterLikes.textContent = this._counter;
 
-    return this._element;
+    if (this._owner === this._userId) {
+      return this._element;
+    } else {
+      this._element.querySelector('.element__trash-button').style.display = "none";
+      return this._element;
+    }
   }
 
   _setEventListeners = () => {
@@ -35,7 +65,7 @@ export class Card {
     });
 
     this._element.querySelector('.element__trash-button').addEventListener('click', () => {
-      this._deleteElement();
+      this._buttonDeleteCard(this, this._id);
     });
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
@@ -44,10 +74,18 @@ export class Card {
   }
 
   _likeElement = (evt) => {
-    evt.target.classList.toggle('element__like-button_active')
+    this.countLikes = this._element.querySelector('.element__like-counter');
+    if (
+      evt.target.classList.toggle('element__like-button_active')) {
+      this.countLikes.textContent = Number(this.countLikes.textContent) + Number(1);
+      this._likeCards(this._id);
+    } else {
+      this.countLikes.textContent = Number(this.countLikes.textContent) - Number(1);
+      this._dislikeCards(this._id);
+    }
   }
 
-  _deleteElement = (evt) => {
+  deleteElement = (evt) => {
     this._element.remove();
   }
 }

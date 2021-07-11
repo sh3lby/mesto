@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <meta name="description" content="Яндекс.Практикум, проектная работа 4">
+    <meta name="description" content="Яндекс.Практикум, проектная работа">
     <meta name="keywords" content="HTML5, CSS, fonts, import, media, adaptive, JS">
     <meta name="author" content="Владимир Давыдов">
 </head>
@@ -16,8 +16,8 @@
         <p class="popup__name">Редактировать профиль</p>
         <input type="text" placeholder="Имя" name="name" id="name-input" class="popup__input popup__input_type_name" minlength="2" maxlength="40" value="sh3lby.cc" required>
         <span class="popup__input-error" id="name-input-error"></span>
-        <input type="text" placeholder="О себе" name="job" id="job-input" class="popup__input popup__input_type_job" minlength="2" maxlength="200" value="Генин веб-разработки" required>
-        <span class="popup__input-error" id="job-input-error"></span>
+        <input type="text" placeholder="О себе" name="about" id="about-input" class="popup__input popup__input_type_job" minlength="2" maxlength="200" value="Генин веб-разработки" required>
+        <span class="popup__input-error" id="about-input-error"></span>
         <button id="btn-submit-about-popup" class="popup__submit-button" type="submit">Сохранить</button>
       </form>
       <button id="btn-close-about-popup" class="popup__close-button" type="button"></button>
@@ -45,22 +45,45 @@
       </figure>
     </div>
   </section>
+  <section id="popup-delete" class="popup popup_type_delete" aria-label="окно удаления">
+    <div class="popup__container">
+      <form id="profile" class="popup__form" novalidate>
+        <h2 class="popup__name">Вы уверены?</h2>
+        <button class="popup__submit-button" type="submit">Да</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </section>
+  <section id="popup-avatar" class="popup popup_type_edit-avatar" aria-label="окно редактирования аватара">
+    <div class="popup__container">
+      <form id="edit-avatar" class="popup__form" name="addAvatar" novalidate>
+        <h2 class="popup__name">Обновить аватар</h2>
+        <input id="avatar-src" name="avatar" type="url" class="popup__input popup__input_type_avatar" placeholder="Ссылка на картинку" required>
+        <span id="avatar-src-error" class="popup__input-error"></span>
+        <button id="btn-submit-avatar-popup" class="popup__submit-button" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button"></button>
+    </div>
+  </section>
   <header class="header">
     <img src="<%=require('./images/header-logo.svg')%>" alt="логотип Место" class="header__logo">
   </header>
   <main class="main">
     <section class="profile" aria-label="профиль">
       <div class="profile__user">
-      <img src="<%=require('./images/avatar.jpg')%>" alt="аватар" class="profile__avatar">
-      <div class="profile__info">
-        <div class="profile__about">
-          <h1 class="profile__name">sh3lby.cc</h1>
-          <p class="profile__job">Генин веб-разработки</p>
+        <div class="profile__avatar">
+          <img id="avatar-user" src="<%=require('./images/avatar.jpg')%>" alt="аватар" class="profile__image">
+          <button class="profile__image-edit-button" type="button"></button>
         </div>
-        <button class="profile__edit-button" type="button">
-          <img src="<%=require('./images/edit-button.svg')%>" alt="редактировать">
-        </button>
-      </div>
+        <div class="profile__info">
+          <div class="profile__about">
+            <h1 id="name" class="profile__name">sh3lby.cc</h1>
+            <p id="about" class="profile__job">Генин веб-разработки</p>
+          </div>
+          <button class="profile__edit-button" type="button">
+            <img src="<%=require('./images/edit-button.svg')%>" alt="редактировать">
+          </button>
+        </div>
       </div>
       <button class="profile__add-button" type="button">
         <img src="<%=require('./images/add-button.svg')%>" alt="добавить">
@@ -78,7 +101,10 @@
       <button class="element__trash-button" type="button"></button>
       <div class="element__decription">
         <h3 class="element__title"></h3>
-        <button class="element__like-button" type="button"></button>
+        <div class="element__like-ui">
+          <button class="element__like-button" type="button"></button>
+          <span id="like-counter" class="element__like-counter">0</span>
+        </div>
       </div>
     </div>
   </template>
