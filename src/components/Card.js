@@ -5,7 +5,7 @@ export class Card {
     handleCardClick,
     likeCards,
     dislikeCards,
-    buttonDeleteCard,
+    deleteCardHandler,
     userId) {
       this._name = name;
       this._link = link;
@@ -17,7 +17,7 @@ export class Card {
       this._handleCardClick = handleCardClick;
       this._likeCards = likeCards;
       this._dislikeCards = dislikeCards;
-      this._buttonDeleteCard = buttonDeleteCard;
+      this._deleteCardHandler = deleteCardHandler;
       this._userId = userId._id;
   }
 
@@ -65,7 +65,7 @@ export class Card {
     });
 
     this._element.querySelector('.element__trash-button').addEventListener('click', () => {
-      this._buttonDeleteCard(this, this._id);
+      this._deleteCardHandler(this, this._id);
     });
 
     this._element.querySelector('.element__image').addEventListener('click', () => {

@@ -12,7 +12,7 @@ export class Api {
     return res.json();
   }
 
-  tokenUsers() {
+  getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authorization
@@ -21,7 +21,7 @@ export class Api {
     .then(res => this._getServerData(res))
   }
 
-  getCardsFromServer() {
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authorization
@@ -30,7 +30,10 @@ export class Api {
     .then(res => this._getServerData(res));
   }
 
-  updateUserInfoOnServer(inputInfoName, inputInfoJob) {
+  updateUserInfo(inputInfoName, inputInfoJob) {
+    const name = document.querySelector(inputInfoName);
+    const about = document.querySelector(inputInfoJob);
+
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -38,14 +41,17 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        name: document.querySelector(inputInfoName).value,
-        about: document.querySelector(inputInfoJob).value
+        name: name.value,
+        about: about.value
       })
     })
     .then(res => this._getServerData(res))
   }
 
-  addNewCardOnServer(inputTitlePlace, inputLinkPlace) {
+  createCard(inputTitlePlace, inputLinkPlace) {
+    const name = document.querySelector(inputTitlePlace);
+    const link = document.querySelector(inputLinkPlace);
+
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
@@ -53,14 +59,14 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        name: document.querySelector(inputTitlePlace).value,
-        link: document.querySelector(inputLinkPlace).value,
+        name: name.value,
+        link: link.value,
       })
     })
     .then(res => this._getServerData(res));
   }
 
-  deleteCardFromServer(cardId) {
+  deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -90,7 +96,9 @@ export class Api {
     .then(res => this._getServerData(res))
   }
 
-  updateAvatarOnServer(infoAvatar) {
+  updateAvatar(infoAvatar) {
+    const avatar = document.querySelector(infoAvatar);
+
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
@@ -98,7 +106,7 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        avatar: document.querySelector(infoAvatar).value
+        avatar: avatar.value
       })
     })
     .then(res => this._getServerData(res))
