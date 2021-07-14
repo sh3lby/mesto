@@ -51,23 +51,23 @@ const api = new Api({
   }
 });
 
-function handleSubmitUser(evt) {
+function handleSubmitUser(evt, data) {
   evt.preventDefault();
   renderLoading(true, config.popupUser);
-  updateUserInfo();
+  updateUserInfo(data);
 };
 
-function handleSubmitAvatar(evt) {
+function handleSubmitAvatar(evt, data) {
   evt.preventDefault();
   renderLoading(true, config.popupAvatar);
-  updateAvatar();
+  updateAvatar(data);
   addAvatar.toggleButtonState();
 }
 
-function handleSubmitElement(evt) {
+function handleSubmitElement(evt, data) {
   evt.preventDefault();
   renderLoading(true, config.popupElement);
-  addNewCard();
+  addNewCard(data);
   addCards.toggleButtonState();
 }
 
@@ -135,8 +135,8 @@ function dislikeCard(likeId) {
   });
 }
 
-function updateAvatar() {
-  api.updateAvatar(config.inputLinkAvatar)
+function updateAvatar(data) {
+  api.updateAvatar( {avatar: data.avatar} )
   .then((res) => {
     userInfo.setAvatar(res);
     popupEditAvatar.close();
@@ -149,8 +149,8 @@ function updateAvatar() {
   });
 }
 
-function addNewCard() {
-  api.createCard(config.inputTitlePlace, config.inputLinkPlace)
+function addNewCard(data) {
+  api.createCard( {name: data.name, link: data.link} )
   .then(res => {
     addSection.addItem(renderCard(res, res.owner));
     popupAddCard.close();
@@ -163,8 +163,8 @@ function addNewCard() {
   });
 }
 
-function updateUserInfo() {
-  api.updateUserInfo(config.inputInfoName, config.inputInfoJob)
+function updateUserInfo(data) {
+  api.updateUserInfo( {name: data.name, about: data.about} )
   .then((res) => {
     userInfo.setUserInfo(res);
     popupEditProfile.close();

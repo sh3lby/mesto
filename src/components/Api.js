@@ -30,10 +30,7 @@ export class Api {
     .then(res => this._getServerData(res));
   }
 
-  updateUserInfo(inputInfoName, inputInfoJob) {
-    const name = document.querySelector(inputInfoName);
-    const about = document.querySelector(inputInfoJob);
-
+  updateUserInfo( {name, about} ) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -41,17 +38,14 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        name: name.value,
-        about: about.value
+        name,
+        about
       })
     })
     .then(res => this._getServerData(res))
   }
 
-  createCard(inputTitlePlace, inputLinkPlace) {
-    const name = document.querySelector(inputTitlePlace);
-    const link = document.querySelector(inputLinkPlace);
-
+  createCard( {name, link} ) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
@@ -59,8 +53,8 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        name: name.value,
-        link: link.value,
+        name,
+        link
       })
     })
     .then(res => this._getServerData(res));
@@ -96,9 +90,7 @@ export class Api {
     .then(res => this._getServerData(res))
   }
 
-  updateAvatar(infoAvatar) {
-    const avatar = document.querySelector(infoAvatar);
-
+  updateAvatar( {avatar} ) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
@@ -106,7 +98,7 @@ export class Api {
         'Content-Type': this._contentType
       },
       body: JSON.stringify({
-        avatar: avatar.value
+        avatar
       })
     })
     .then(res => this._getServerData(res))
