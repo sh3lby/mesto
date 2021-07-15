@@ -112,12 +112,12 @@ function initialDataFromServer() {
 
 function deleteServerCard(card, cardId) {
   api.deleteCard(cardId)
-  .catch((err) => {
-    renderError(`Ошибка: ${err}`);
-  })
   .then(() => {
     card.deleteElement();
     popupDeleteCard.close()
+  })
+  .catch((err) => {
+    renderError(`Ошибка: ${err}`);
   });
 }
 
